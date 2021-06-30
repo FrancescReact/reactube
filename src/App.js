@@ -16,11 +16,12 @@ function App() {
 })
 console.log(input.videoMetadataInfo, input.selectedVideoId)
 
-
+//La funcio ASYNC el parametre que li he de passar és l'input del FORM /SEARCH (Component)
  const  onSearch = async ()=>{
   const response = await api.get("/search",{
     params:{
       q:''
+      // Aqui ha d'anar el parametre que li passa la funcio ASYNC
     }
     
   });
