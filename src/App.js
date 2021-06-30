@@ -4,7 +4,8 @@ import './styles.css'
 import VideoList from './components/videoList';
 import Videoplayer from './components/videoPlayer';
 import { useState } from 'react'
-import api from './components/api';
+import axios from "axios"
+
 
 
 function App() {
@@ -16,11 +17,11 @@ function App() {
 })
 console.log(input.videoMetadataInfo, input.selectedVideoId)
 
-
- const  onSearch = async ()=>{
+/*
+ const  onSearch = async casa=>{
   const response = await api.get("/search",{
     params:{
-      q:''
+      q:'casa'
     }
     
   });
@@ -32,17 +33,18 @@ console.log(input.videoMetadataInfo, input.selectedVideoId)
   console.log (response)
   
 }
+*/
 
-//({dada}) => {
+   const onSearch= () => {
   
-  /* axios({
+   axios({
        "method": "GET",
-       "url": 'https://www.googleapis.com/youtube/v3/search?q={input}',
+       "url": 'https://www.googleapis.com/youtube/v3/search',
        "params": {
            'part': 'snippet',
            'maxResults': '20',
            'key': 'AIzaSyCy02HeM8CMWsipwSljGNA6RbLWPEnhS0w',
-            'q': dada,
+            'q': 'Rock',
            'type': 'video'
        }
    })
@@ -52,7 +54,8 @@ console.log(input.videoMetadataInfo, input.selectedVideoId)
         })
        .catch((error) => {
            console.log(error)
-       })*/
+       })
+      }
 
   return (
     <div>
@@ -65,6 +68,7 @@ console.log(input.videoMetadataInfo, input.selectedVideoId)
   );
 
   }
+
 
 
 export default App;

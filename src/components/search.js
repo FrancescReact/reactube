@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles.css'
 import { useState } from 'react'
 
-function Search(dada) {
+function Search() {
 
     const [cerca, setCerca] = useState({
         dada: ''
