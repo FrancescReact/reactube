@@ -7,68 +7,49 @@ import { useState } from 'react'
 import axios from "axios"
 
 
-
 function App() {
-
-  const [input, setInput] = useState ({
-    videoMetadataInfo :null,
-    selectedVideoId: null
-   
-})
-console.log(input.videoMetadataInfo, input.selectedVideoId)
-
-/*
- const  onSearch = async casa=>{
-  const response = await api.get("/search",{
-    params:{
-      q:'casa'
-    }
-    
+  const [cerca, setCerca] = useState();
+  const [input, setInput] = useState('');
+  const [meta, setMeta] = useState({
+    videoMetadataInfo: []
   });
-  setInput({
-    videoMetadataInfo: response.data.items,
-    selectedVideoId: response.data.items[0].id.videoId
-
-  })
-  console.log (response)
-  
-}
-*/
-
-   const onSearch= () => {
-  
-   axios({
-       "method": "GET",
-       "url": 'https://www.googleapis.com/youtube/v3/search',
-       "params": {
-           'part': 'snippet',
-           'maxResults': '20',
-           'key': 'AIzaSyCy02HeM8CMWsipwSljGNA6RbLWPEnhS0w',
-            'q': 'Rock',
-           'type': 'video'
-       }
-   })
-       .then((res) => {
-          console.log(res.data)
-           setInput ({selectedVideoId:res.data.items[0].id.videoId   , videoMetadataInfo:res.data.items[1].snippet.title})    
-        })
-       .catch((error) => {
-           console.log(error)
-       })
+  const onSearch = () => {
+    axios({
+      "method": "GET",
+      "url": 'https://www.googleapis.com/youtube/v3/search',
+      "params": {
+        'part': 'snippet',
+        'maxResults': '10',
+        'key': 'AIzaSyCy02HeM8CMWsipwSljGNA6RbLWPEnhS0w',
+        'q': `${cerca}`,
+        'type': 'video'
       }
-
+    })
+      .then((res) => {
+        setMeta({ videoMetadataInfo: res.data.items })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
   return (
-    <div>
-      <Search />
-      <button onClick={onSearch}>busca</button>
-      <Videoplayer />
-      <VideoList />
-    
+    <div className="fons">
+      <div className="capçal">
+        <header className="header">
+          <h2>Busca Videos APP</h2>
+        </header>
+      </div>
+      <Search handleSetCerca={setCerca} />
+      <div className="search-form">
+        <button type="button" className=" buto" onClick={onSearch}>SEARCH</button>
+      </div>
+      <div className="wrapper">
+        <VideoList data={meta} onVideoSelected={setInput} />
+        <div className="main"><Videoplayer videoId={input}  /> </div>
+        <div className="aside-2"></div>
+      </div>
+      <div className="footer">peu</div>
     </div>
   );
-
-  }
-
-
-
+}
 export default App;
