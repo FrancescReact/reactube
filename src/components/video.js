@@ -13,7 +13,7 @@ function getCss(imageurl) {
   };
   return _styles;
 }
-const VideoItem = ({ data, onVideoSelected ,   handleSetVideoSnippetSelected}) => {
+const VideoItem = ({ data, onVideoSelected, handleSetVideoSnippetSelected }) => {
 
   function selectVideo(selectedVideoId) {
     onVideoSelected(selectedVideoId)
@@ -27,7 +27,7 @@ const VideoItem = ({ data, onVideoSelected ,   handleSetVideoSnippetSelected}) =
           onClick={(event) => {
             event.preventDefault();
             selectVideo(id.videoId)
-            handleSetVideoSnippetSelected(snippet)   
+            handleSetVideoSnippetSelected(snippet)
           }}>
           <div style={getCss(snippet.thumbnails.medium.url)} key={index}></div>
           <p className="title">{snippet.title}</p>

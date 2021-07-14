@@ -9,7 +9,7 @@ import VideoInfo from './components/videoInfo';
 
 function App() {
   const [searchValue, setSearchValue] = useState();
-  const [input, setInput] = useState('');
+  const [idVideoSelected, setIdVideoSelected] = useState('');
   const [meta, setMeta] = useState({
     videoMetadataInfo: []
   });
@@ -47,8 +47,8 @@ function App() {
         <button type="button" className=" buto" onClick={onSearch}>SEARCH</button>
       </div>
       <div className="wrapper">
-        <VideoList data={meta} onVideoSelected={setInput} handleSetVideoSnippetSelected={setVideoSnippetSelected} />
-        <div className="main"><Videoplayer videoId={input} /><VideoInfo videoSnippetSelected={videoSnippetSelected} /></div>
+        <VideoList data={meta} onVideoSelected={setIdVideoSelected} handleSetVideoSnippetSelected={setVideoSnippetSelected} />
+        <div className="main"><Videoplayer videoId={idVideoSelected} /><VideoInfo videoSnippetSelected={videoSnippetSelected} /></div>
         <div className="aside-2"></div>
       </div>
       <div className="footer">peu</div>
