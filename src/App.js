@@ -5,7 +5,7 @@ import VideoList from './components/videoList';
 import Videoplayer from './components/videoPlayer';
 import { useState } from 'react'
 import axios from "axios"
-
+import VideoInfo from './components/videoInfo';
 
 function App() {
   const [cerca, setCerca] = useState();
@@ -13,6 +13,9 @@ function App() {
   const [meta, setMeta] = useState({
     videoMetadataInfo: []
   });
+
+  const [videoSnippetSelected, setVideoSnippetSelected] = useState();
+
   const onSearch = () => {
     axios({
       "method": "GET",
@@ -44,8 +47,8 @@ function App() {
         <button type="button" className=" buto" onClick={onSearch}>SEARCH</button>
       </div>
       <div className="wrapper">
-        <VideoList data={meta} onVideoSelected={setInput} />
-        <div className="main"><Videoplayer videoId={input}  /> </div>
+        <VideoList data={meta} onVideoSelected={setInput} handleSetVideoSnippetSelected={setVideoSnippetSelected} />
+        <div className="main"><Videoplayer videoId={input} /><VideoInfo videoSnippetSelected={videoSnippetSelected} /></div>
         <div className="aside-2"></div>
       </div>
       <div className="footer">peu</div>

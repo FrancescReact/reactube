@@ -1,7 +1,5 @@
 import React from "react";
 import '../styles.css'
-import { useState } from 'react'
-import VideoInfo from "./videoInfo";
 
 
 function getCss(imageurl) {
@@ -15,17 +13,11 @@ function getCss(imageurl) {
   };
   return _styles;
 }
-
-const VideoItem = ({ data, onVideoSelected }) => {
+const VideoItem = ({ data, onVideoSelected ,   handleSetVideoSnippetSelected}) => {
 
   function selectVideo(selectedVideoId) {
     onVideoSelected(selectedVideoId)
   }
-  const [info, setInfo] = useState('')
-  const [titol, setTitol] = useState('')
-  const [publi, setPubli] = useState('')
- 
- 
   const obtain =
     data.videoMetadataInfo.map(({ snippet, id }, index) => {
       return (
@@ -35,9 +27,7 @@ const VideoItem = ({ data, onVideoSelected }) => {
           onClick={(event) => {
             event.preventDefault();
             selectVideo(id.videoId)
-            setInfo(snippet.description)
-            setTitol(snippet.title)
-            setPubli(snippet.publishedAt)
+            handleSetVideoSnippetSelected(snippet)   
           }}>
           <div style={getCss(snippet.thumbnails.medium.url)} key={index}></div>
           <p className="title">{snippet.title}</p>
@@ -47,7 +37,6 @@ const VideoItem = ({ data, onVideoSelected }) => {
   return (
     <div>
       <h3>{obtain}</h3>
-      <div ><VideoInfo  titol={titol} desc={info} publi={publi} /></div>
     </div>
   )
 }

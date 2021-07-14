@@ -3,7 +3,7 @@ import '../styles.css';
 
 
 function VideoInfo ( props) {    
-       if(!props){
+       if(!props.videoSnippetSelected){
          return(
            <div className="videoinfo">
            <p>No info</p>
@@ -14,9 +14,9 @@ function VideoInfo ( props) {
     
     return(
       <div className="videoinfo">
-      <p>{props.titol}</p>
-      <p>{props.desc}</p>
-      <p>{props.publi}</p>
+      <p>{props.videoSnippetSelected.title}</p>
+      <p>{props.videoSnippetSelected.description}</p>
+      <p>{props.videoSnippetSelected.publishedAt}</p>
         
       </div>    
      );
