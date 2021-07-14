@@ -8,7 +8,7 @@ import axios from "axios"
 import VideoInfo from './components/videoInfo';
 
 function App() {
-  const [cerca, setCerca] = useState();
+  const [searchValue, setSearchValue] = useState();
   const [input, setInput] = useState('');
   const [meta, setMeta] = useState({
     videoMetadataInfo: []
@@ -24,7 +24,7 @@ function App() {
         'part': 'snippet',
         'maxResults': '10',
         'key': 'AIzaSyCy02HeM8CMWsipwSljGNA6RbLWPEnhS0w',
-        'q': `${cerca}`,
+        'q': `${searchValue}`,
         'type': 'video'
       }
     })
@@ -42,7 +42,7 @@ function App() {
           <h2>Busca Videos APP</h2>
         </header>
       </div>
-      <Search handleSetCerca={setCerca} />
+      <Search handleSetSearchValue={setSearchValue} />
       <div className="search-form">
         <button type="button" className=" buto" onClick={onSearch}>SEARCH</button>
       </div>
