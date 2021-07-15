@@ -51,7 +51,7 @@ function App() {
         <div className="main"><Videoplayer videoId={idVideoSelected} /><VideoInfo videoSnippetSelected={videoSnippetSelected} /></div>
         <div className="aside-2"></div>
       </div>
-      <div className="footer">peu</div>
+      <div className="footer">Francesc Bedós - Juliol 2021 - ITACADEMY</div>
     </div>
   );
 }
